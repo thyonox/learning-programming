@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, rgb(18, 194, 233), rgb(196, 113, 237), rgb(246, 79, 89));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #757575;
+}
+
+body a {
+    text-decoration: none;
+}
+
+.container {
+    width: 448px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.container header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.container header .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.container header .info .count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 6px;
+    width: 100%;
+    font-weight: 600;
+}
+
+.container header .info .count i {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.container header .profile {
+    width: 400px;
+}
+
+.container header .profile img {
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 /1;
+    margin-top: -50%;
+    border-radius: 16px;
+    border: 6px solid #fff;
+}
+
+.container .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.container .anout h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.container .about h2 i {
+    color: #3d5afe;
+}
+
+.container .about p {
+    font-size: 16px;
+    color: #333;
+}
+
+.container .social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.container .social-links a {
+    height: 48px;
+    width: 48px;
+    display: flex; /* 将行内元素转为块级元素*/
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 8px;
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    color: #616161;
+    transition: all 0.3s ease;
+}
+
+.container .social-links a i {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.container .social-links a:hover {
+    border: 1px solid #7e57c2;
+}
+
+.container .social-links a i:hover {
+    color: #7e57c2;
+}
+
+.container .tabs-container {
+    width: 100%;
+}
+
+.container .tabs-container .tabs {
+    display: flex;
+    list-style: none;
+    border: 1px solid #ebeaf6;
+    border-radius: 8px;
+    position: relative;
+}
+
+.container .tabs-container .tabs li {
+    z-index: 2;
+}
+
+.container .tabs-container .tabs li a {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 138px;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.container .tabs-container .tabs li a:hover,
+.container .tabs-container .tabs li a:active {
+    color: #7157c2;
+}
+
+.container .tabs-container .tabs .active-tab {
+    position: absolute;
+    left: 0;
+    width: 138px;
+    height: 100%;
+    background-color: #ede7f6;
+    z-index: 1;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.container .tab-content {
+    overflow-y: auto;
+    display: none;
+}
+
+.container .tab-content::-webkit-scrollbar {
+     width: 8px;
+    height: 8px;
+    background: #e8eaf6;
+    border-radius: 160px;
+}
+
+.container .tab-content::-webkit-scrollbar-thumb {
+    background-color: #c5cae9;
+    border-radius: 160px;
+}
+
+.container .active-tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 184px;
+    padding: 0 4px;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.container .tabs-container .tabs li:nth-child(1):has(.active) ~ .active-tab {
+    transform: translateX(0);
+}
+
+.container .tabs-container .tabs li:nth-child(2):has(.active) ~ .active-tab {
+    transform: translateX(138px);
+}
+
+.container .tabs-container .tabs li:nth-child(3):has(.active) ~ .active-tab {
+    transform: translateX(276px);
+}
+
+.container .tab-content .vote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 4px;
+    padding: 8px 0;
+    gap: 12px;
+}
+
+.container .tab-content .vote a {
+    display: block;
+    padding: 8px;
+    background-color: #fafafa;
+    color: #757575;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.container .tab-content .vote a:hover {
+    border-color: #7e57c2;
+    color: #7e57c2;
+}
+
+.container .tab-content .comments {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    gap: 16px;
+}
+
+.container .tab-content .comments .comment {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.container .tab-content .comments .comment img {
+    width: 48px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.container .tab-content .comments .comment h4 {
+    margin-top: 5px;
+}
+
+.container .tab-content .comments .comment p {
+    font-size: 13px;
+}
+
+.container button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #3d5afe;
+    color: #fff;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.container button:hover{
+    background-color: #304ffe;
+}
