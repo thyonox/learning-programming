@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery-01-Starter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+
+        #result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>jQuery Demo</h1>
+    <p>This is a sample paragraph.</p>
+    <div>
+        <button id="toggleColor">Toggle Color</button>
+        <button id="addItem">Add List Item</button>
+        <button id="loadData">Load Data</button>
+    </div>
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <div id="result">Data will appear here...</div>
+
+    <script>
+        $(document).ready(() => {
+            // 切换文本颜色
+            $('#toggleColor').on('click', () => {
+                $('p').toggleClass('highlight').css('color', $('p').hasClass('highlight') ? 'red' : 'black');
+            })
+            // 动态添加列表项
+            $('#addItem').on('click', () => {
+                $('#itemList').append('<li>Item ' + ($('#itemList li').length + 1) + '</li>').children().last().fadeIn(500);
+            })
+            // AJAX 加载数据
+            $('#loadData').on('click', () => {
+                $.get('https://jsonplaceholder.typicode.com/posts/1', (data) => {
+                    $('#result').html('<strong>Title:</strong>' + data.title + '<br><strong>Body:</strong>' + data.body).css('border', '1px dashed green').fadeIn(500);
+                }).fail(() => {
+                    $('#result').html('Failed to load data.').css('color', 'red').css('border', '1px dashed red');
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
