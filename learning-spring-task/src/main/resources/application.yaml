@@ -1,0 +1,15 @@
+spring:
+  application:
+    name:
+      Learning-SpringTask
+  task:
+    execution:
+      thread-name-prefix: ThreadPoolTaskExecutor -
+      pool:
+        core-size: 10
+        max-size: 20
+        queue-capacity: 100
+    scheduling:
+      thread-name-prefix: ThreadPoolTaskScheduler -
+      pool:
+        size: 5
