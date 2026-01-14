@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.thyonix.order.dao.OrderDao">
+
+    <resultMap id="Order" type="org.thyonix.order.domain.Order">
+        <id property="orderId" column="order_id" />
+        <result property="userId" column="user_id" />
+        <result property="orderName" column="order_name" />
+    </resultMap>
+
+    <select id="getOrderById" resultMap="Order">
+        select * from cloud_order where order_id = #{orderId}
+    </select>
+</mapper>
