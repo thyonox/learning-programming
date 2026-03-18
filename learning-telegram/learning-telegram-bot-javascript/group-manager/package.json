@@ -1,0 +1,22 @@
+{
+  "name": "group-manager",
+  "version": "0.0.1",
+  "description": "telegram 群组管理机器人",
+  "license": "ISC",
+  "author": "thyonox",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "grammy": "^1.41.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
