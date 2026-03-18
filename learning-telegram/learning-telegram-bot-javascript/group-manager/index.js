@@ -1,31 +1,56 @@
 import 'dotenv/config'
 import express from 'express'
 import { Bot } from "grammy";
+import { CommandGroup, commandNotFound, commands } from '@grammyjs/commands';
 
 const bot = new Bot(process.env.TELEGRAM_BOT_KEY);
 
 const app = express();
 app.use(express.json());
 
-// 监听所有文本消息（可扩展到其他类型）
-bot.on("message:text", async (ctx) => {
-    const chatId = ctx.chat.id;
-    const chatType = ctx.chat.type;          // "group" 或 "supergroup"
-    const chatTitle = ctx.chat.title || "无标题";
+const commonCommands = new CommandGroup();
 
-    // 打印到控制台（开发时查看）
-    console.log("收到消息来自：");
-    console.log(`  - chat_id: ${chatId}`);
-    console.log(`  - 类型: ${chatType}`);
-    console.log(`  - 群组名称: ${chatTitle}`);
-    console.log(`  - 发送者: ${ctx.from?.username || ctx.from?.first_name || "匿名"}`);
-    console.log(`  - 话题id：${ctx.message.message_thread_id}`)
-
-    // 可选：仅在群组中回复 chat_id（测试用，生产环境可删除）
-    if (chatType === "group" || chatType === "supergroup") {
-        await ctx.reply(`本群 chat_id 是：${chatId}`);
+commonCommands.command(
+    "chat_id",
+    "获取群组id",
+    (ctx) => {
+        ctx.reply(`本群 chat_id 是：\`${ctx.chat.id}\``)
     }
-});
+)
+
+commonCommands.command(
+    "thread_id",
+    "获取话题id",
+    (ctx) => {
+        ctx.reply(`本话题 id 是：${ctx.message.message_thread_id}`)
+    }
+)
+
+// 注册命名处理器
+bot.use(commonCommands);
+
+// 向 telegram 注册命名（显示在输入框菜单中）
+await commonCommands.setCommands(bot);
+
+// 监听所有文本消息（可扩展到其他类型）
+// bot.on("message:text", async (ctx) => {
+//     const chatId = ctx.chat.id;
+//     const chatType = ctx.chat.type;          // "group" 或 "supergroup"
+//     const chatTitle = ctx.chat.title || "无标题";
+
+//     // 打印到控制台（开发时查看）
+//     console.log("收到消息来自：");
+//     console.log(`  - chat_id: ${chatId}`);
+//     console.log(`  - 类型: ${chatType}`);
+//     console.log(`  - 群组名称: ${chatTitle}`);
+//     console.log(`  - 发送者: ${ctx.from?.username || ctx.from?.first_name || "匿名"}`);
+//     console.log(`  - 话题id：${ctx.message.message_thread_id}`)
+
+//     // 可选：仅在群组中回复 chat_id（测试用，生产环境可删除）
+//     if (chatType === "group" || chatType === "supergroup") {
+//         await ctx.reply(`本群 chat_id 是：${chatId}`);
+//     }
+// });
 
 // async function sendLinkWithPreview(chatId) {
 //   await bot.api.sendMessage(chatId, 
