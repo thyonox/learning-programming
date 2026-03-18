@@ -10,6 +10,21 @@ function Person(age, name){
     this.name = name;
 }
 
+function Student(){
+    this.property = false
+}
+
+Student.prototype = new Person();
+
+const s1 = new Student();
+
+console.log(Person.prototype);
+console.log(typeof Person.prototype);
+
+
+
+
+
 const teacher = new Person(18, 'Tom');
 Person.color = 'red';
 console.log(Person.color);
