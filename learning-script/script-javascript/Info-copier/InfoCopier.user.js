@@ -23,6 +23,7 @@
 // @connect      assets-cdn.jable.tv
 // @connect      fivetiu.com
 // @connect      api.notion.com
+// @connect      localhost      
 // @resource     custom file:///E:/Documents\WorkSpace/learning-programming/learning-script/script-javascript/Info-copier/style.css
 // @updateURL    https://
 // @downloadURL  https://
@@ -71,8 +72,8 @@
     //-----------------------------------------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------------------------
     // 外层容器
-    
-    
+
+
     const container = document.createElement('div');
     container.className = 'info-copier-container';
     document.body.appendChild(container);
@@ -214,11 +215,11 @@
     function notification(message, type = 'success') {
         try {
             ElementPlus.ElNotification({
-            title: 'InfoCopier通知:',
-            message,
-            type,
-            duration: 2000,
-        });
+                title: 'InfoCopier通知:',
+                message,
+                type,
+                duration: 2000,
+            });
         } catch (error) {
             GM_notification({
                 title: 'InfoCopier通知:',
@@ -227,110 +228,129 @@
         }
     }
 
+    const SERVER_URL = "http://localhost:3000/url"; // 替换为你的服务器地址
+
     notion.addEventListener('click', () => {
+        //     GM_xmlhttpRequest({
+        //         method: 'POST',
+        //         url: 'https://api.notion.com/v1/pages',
+        //         headers: {
+        //             'Authorization': `Bearer ${NOTION_KEY}`,
+        //             'Notion-Version': NOTION_VERSION,
+        //             'Content-Type': 'application/json'
+        //         },
+        //         data: JSON.stringify({
+        //             parent: {
+        //                 database_id: NOTION_DATABASE_ID
+        //             },
+        //             properties: {
+        //                 ID: {
+        //                     title: [
+        //                         {
+        //                             text: {
+        //                                 content: videoId,
+        //                             },
+        //                         },
+        //                     ],
+        //                 },
+        //                 MainGroup: {
+        //                     select: {
+        //                         name: '有码JAV',
+        //                     }
+        //                 },
+        //                 Title: {
+        //                     rich_text: [
+        //                         {
+        //                             text: {
+        //                                 content: videoName,
+        //                             }
+        //                         }
+        //                     ],
+        //                 },
+        //             },
+        //             children: [
+        //                 {
+        //                     object: "block",
+        //                     type: "image",
+        //                     image: {
+        //                         type: "external",
+        //                         external: {
+        //                             url: document.querySelector('div video').getAttribute('poster'),
+        //                         }
+        //                     }
+        //                 },
+        //                 {
+        //                     object: "block",
+        //                     type: "callout",
+        //                     callout: {
+        //                         rich_text: [
+        //                             {
+        //                                 type: "text",
+        //                                 text: {
+        //                                     content: "播放渠道：",
+        //                                 },
+        //                                 annotations: {
+        //                                     "bold": true,
+        //                                     "color": "red"
+        //                                 }
+        //                             },
+        //                             {
+        //                                 type: "text",
+        //                                 text: {
+        //                                     content: "\n",   // 这里是换行
+        //                                     link: null
+        //                                 }
+        //                             },
+        //                             {
+        //                                 type: "text",
+        //                                 text: {
+        //                                     content: websiteUrl,
+        //                                     link: {
+        //                                         url: websiteUrl
+        //                                     }
+        //                                 }
+        //                             }
+        //                         ],
+        //                         color: "purple_background"
+        //                     }
+        //                 },
+        //                 {
+        //                     object: "block",
+        //                     heading_1: {
+        //                         rich_text: [
+        //                             {
+        //                                 text: {
+        //                                     content: 'Preview',
+        //                                 },
+        //                             },
+        //                         ],
+        //                     },
+        //                 },
+        //             ],
+        //         }),
+        //         onload: function (res) {
+        //             notification('Notion 页面已创建！');
+        //         },
+        //         onerror: function (err) {
+        //             notification('创建 Notion 页面时发生错误: ' + err, 'error');
+        //         }
+        //     });
+        const url = location.href;
+        const title = document.title;
+        const type = "jav"
+
         GM_xmlhttpRequest({
-            method: 'POST',
-            url: 'https://api.notion.com/v1/pages',
-            headers: {
-                'Authorization': `Bearer ${NOTION_KEY}`,
-                'Notion-Version': NOTION_VERSION,
-                'Content-Type': 'application/json'
+            method: "POST",
+            url: SERVER_URL,
+            headers: { "Content-Type": "application/json" },
+            data: JSON.stringify({type, url, title }),
+            onload: (res) => {
+                const result = JSON.parse(res.responseText);
+                console.log(result)
             },
-            data: JSON.stringify({
-                parent: {
-                    database_id: NOTION_DATABASE_ID
-                },
-                properties: {
-                    ID: {
-                        title: [
-                            {
-                                text: {
-                                    content: videoId,
-                                },
-                            },
-                        ],
-                    },
-                    MainGroup: {
-                        select: {
-                            name: '有码JAV',
-                        }
-                    },
-                    Title: {
-                        rich_text: [
-                            {
-                                text: {
-                                    content: videoName,
-                                }
-                            }
-                        ],
-                    },
-                },
-                children: [
-                    {
-                        object: "block",
-                        type: "image",
-                        image: {
-                            type: "external",
-                            external: {
-                                url: document.querySelector('div video').getAttribute('poster'),
-                            }
-                        }
-                    },
-                    {
-                        object: "block",
-                        type: "callout",
-                        callout: {
-                            rich_text: [
-                                {
-                                    type: "text",
-                                    text: {
-                                        content: "播放渠道：",
-                                    },
-                                    annotations: {
-                                        "bold": true,
-                                        "color": "red"
-                                    }
-                                },
-                                {
-                                    type: "text",
-                                    text: {
-                                        content: "\n",   // 这里是换行
-                                        link: null
-                                    }
-                                },
-                                {
-                                    type: "text",
-                                    text: {
-                                        content: websiteUrl,
-                                        link: {
-                                            url: websiteUrl
-                                        }
-                                    }
-                                }
-                            ],
-                            color: "purple_background"
-                        }
-                    },
-                    {
-                        object: "block",
-                        heading_1: {
-                            rich_text: [
-                                {
-                                    text: {
-                                        content: 'Preview',
-                                    },
-                                },
-                            ],
-                        },
-                    },
-                ],
-            }),
-            onload: function (res) {
-                notification('Notion 页面已创建！');
+            onerror: () => {
+                console.log('失败')
             },
-            onerror: function (err) {
-                notification('创建 Notion 页面时发生错误: ' + err, 'error');
-            }
         });
-    })
+    });
 })();
