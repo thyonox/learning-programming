@@ -336,7 +336,7 @@
         //         }
         //     });
         const url = location.href;
-        const title = document.title;
+        const title = document.querySelector('.header-left h4').innerText;
         const type = "jav"
 
         GM_xmlhttpRequest({
