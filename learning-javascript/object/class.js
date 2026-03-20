@@ -37,6 +37,14 @@ class Animal {
     }
 }
 
+/**
+ * Represents a Dog, which extends the Animal class.
+ * @class Dog
+ * @extends Animal
+ * @param {string} color - The color of the dog.
+ * @param {string} name - The name of the dog.
+ * @param {number} age - The age of the dog in years.
+ */
 class Dog extends Animal {
     constructor(color, name, age) {
         super(color, name)
