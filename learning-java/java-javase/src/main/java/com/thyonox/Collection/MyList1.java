@@ -1,3 +1,8 @@
+/*
+ * @Author: thyonox
+ * @Date: 2026-03-07 01:36:42
+ * @Description: 
+ */
 package com.thyonox.Collection;
 
 import java.util.ArrayList;
@@ -5,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class MyList {
+public class MyList1 {
     public void arraryList() {
         List<String> arrayList = new ArrayList<>();
         arrayList.add("Apple");
@@ -47,16 +52,11 @@ public class MyList {
         }
         System.out.println(arrayList);
 
-        // 通过 steam 进行复杂操作
+        // 通过 stream 进行复杂操作
         arrayList.stream()
             .filter(itemString -> itemString.startsWith("A"))
             .map(itemString -> itemString.toUpperCase())
             .forEach(itemString -> System.out.println(itemString));
-    }
-
-    public static void main(String[] args) {
-        MyList myList = new MyList();
-        myList.arraryList();
     }
 }
 
